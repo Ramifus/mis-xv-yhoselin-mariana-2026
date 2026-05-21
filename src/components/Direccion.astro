@@ -1,0 +1,209 @@
+---
+// Direccion.astro
+---
+<section class="pt-4 pb-4 px-4 relative">
+  <div class="max-w-xl mx-auto text-center relative">
+
+    <!-- ORNAMENTO SVG DORADO SUPERIOR -->
+    <div class="flex justify-center mb-4" id="flor-arriba-dir">
+      <svg viewBox="0 0 320 48" class="w-64 md:w-80 h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Línea izquierda -->
+        <line x1="0" y1="24" x2="118" y2="24" stroke="url(#grad-izq)" stroke-width="1.2"/>
+        <!-- Diamante izquierdo pequeño -->
+        <polygon points="122,24 128,18 134,24 128,30" fill="#D4AF37" opacity="0.7"/>
+        <!-- Rombo central grande -->
+        <polygon points="160,8 176,24 160,40 144,24" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+        <polygon points="160,14 170,24 160,34 150,24" fill="#D4AF37" opacity="0.25"/>
+        <!-- Punto central -->
+        <circle cx="160" cy="24" r="3" fill="#D4AF37"/>
+        <!-- Diamante derecho pequeño -->
+        <polygon points="186,24 192,18 198,24 192,30" fill="#D4AF37" opacity="0.7"/>
+        <!-- Línea derecha -->
+        <line x1="202" y1="24" x2="320" y2="24" stroke="url(#grad-der)" stroke-width="1.2"/>
+        <!-- Puntos decorativos izquierda -->
+        <circle cx="100" cy="24" r="2" fill="#D4AF37" opacity="0.5"/>
+        <circle cx="108" cy="24" r="1.5" fill="#D4AF37" opacity="0.4"/>
+        <!-- Puntos decorativos derecha -->
+        <circle cx="220" cy="24" r="1.5" fill="#D4AF37" opacity="0.4"/>
+        <circle cx="228" cy="24" r="2" fill="#D4AF37" opacity="0.5"/>
+        <defs>
+          <linearGradient id="grad-izq" x1="0" y1="0" x2="118" y2="0">
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.8"/>
+          </linearGradient>
+          <linearGradient id="grad-der" x1="202" y1="0" x2="320" y2="0">
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- TÍTULO RECEPCIÓN SOCIAL -->
+    <div class="mb-4" id="titulo-direccion">
+      <h2 class="font-charm text-2xl md:text-3xl text-[#D4AF37] font-bold tracking-wide">
+        RECEPCIÓN SOCIAL
+      </h2>
+    </div>
+
+    <!-- ICONO DIRECCIÓN CON MARIPOSAS -->
+    <div class="flex justify-center items-center gap-4 md:gap-6 mb-4" id="icono-direccion">
+      <div class="mariposa-flotante flex items-center" id="mariposa-dir-izq">
+        <img src="/gif/mariposaVerde.gif" alt="Mariposa" class="w-20 h-20 object-contain"/>
+      </div>
+      <img src="/imagenes/IconoDireccion.webp" alt="Icono de dirección" class="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"/>
+      <div class="mariposa-flotante flex items-center" id="mariposa-dir-der">
+        <img src="/gif/mariposaVerde.gif" alt="Mariposa" class="w-20 h-20 object-contain scale-x-[-1]"/>
+      </div>
+    </div>
+
+    <!-- INFORMACIÓN DE UBICACIÓN -->
+    <div class="mb-4" id="info-direccion">
+      <p class="font-charm text-[1.375rem] md:text-[1.375rem] text-[#046D51] leading-relaxed">
+        <b>Salón de Eventos Suticollo</b><br />
+        Calle Simón Bolívar, frente al estadio de Suticollo
+      </p>
+    </div>
+
+    <!-- BOTÓN VER UBICACIÓN -->
+    <div class="flex justify-center" id="boton-ubicacion">
+      <a href="https://maps.app.goo.gl/griwsPwwxxf3ipRFA" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/imagenes/Ubicación.png"
+          alt="Ver ubicación en el mapa"
+          class="w-40 md:w-56 lg:w-64 h-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Estado inicial
+      gsap.set("#flor-arriba-dir", { opacity: 0, y: -20, scale: 0.9 });
+      gsap.set("#icono-direccion", { opacity: 0, scale: 0.8 });
+      gsap.set("#titulo-direccion", { opacity: 0, scale: 0.9 });
+      gsap.set("#info-direccion", { opacity: 0, scale: 0.9 });
+      gsap.set("#boton-ubicacion", { opacity: 0, scale: 0.9 });
+      gsap.set("#mariposa-dir-izq", { opacity: 0, x: -30 });
+      gsap.set("#mariposa-dir-der", { opacity: 0, x: 30 });
+
+      // ✨ ANIMACIÓN SIMULTÁNEA - TODO AL MISMO TIEMPO
+      ScrollTrigger.create({
+        trigger: "#icono-direccion",
+        start: "top 85%",
+        end: "top 20%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          // TODO aparece al mismo tiempo
+          tl.to("#flor-arriba-dir", {
+            opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)",
+          })
+          .to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+          }, "-=0.4")
+          // Animaciones individuales (simultáneas)
+          .to("#icono-direccion", {
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.5)",
+          }, "<")
+          .to("#mariposa-dir-izq", {
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+          }, "<")
+          .to("#mariposa-dir-der", {
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+          }, "<")
+          .to("#titulo-direccion, #info-direccion, #boton-ubicacion", {
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.2)",
+          }, "<");
+
+          // 🦋 FLOTADO CONTINUO DE MARIPOSAS (después de aparecer)
+          gsap.to("#mariposa-dir-izq", {
+            y: -15,
+            x: 5,
+            rotation: 5,
+            duration: 3,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 0.5,
+          });
+
+          gsap.to("#mariposa-dir-der", {
+            y: -15,
+            x: -5,
+            rotation: -5,
+            duration: 3.2,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 0.7,
+          });
+        },
+        onLeaveBack: () => {
+          // Salida simultánea
+          const tl = gsap.timeline();
+          
+          tl.to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion", {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.in",
+          })
+          .to("#icono-direccion", {
+            scale: 0.8,
+            duration: 0.5,
+            ease: "power2.in",
+          }, "<")
+          .to("#mariposa-dir-izq", {
+            x: -30,
+            duration: 0.5,
+            ease: "power2.in",
+          }, "<")
+          .to("#mariposa-dir-der", {
+            x: 30,
+            duration: 0.5,
+            ease: "power2.in",
+          }, "<")
+          .to("#titulo-direccion, #info-direccion, #boton-ubicacion", {
+            scale: 0.9,
+            duration: 0.5,
+            ease: "power2.in",
+          }, "<");
+        },
+      });
+
+      console.log("📍🦋 Sección de Dirección con mariposas inicializada");
+    });
+  }
+</script>
+
+<style>
+  /* Asegurar que las mariposas tengan un movimiento fluido */
+  .mariposa-flotante {
+    will-change: transform;
+    transition: all 0.3s ease;
+  }
+
+  /* Hover en las mariposas */
+  .mariposa-flotante:hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2);
+  }
+</style>
