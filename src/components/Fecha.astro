@@ -84,6 +84,11 @@
       <div class="mt-2 flex justify-center" id="anio-evento">
         <p class="font-charm text-3xl md:text-4xl text-[#046D51] font-bold -translate-x-2">2026</p>
       </div>
+
+      <!-- Hora -->
+      <div class="mt-1 flex justify-center" id="hora-evento">
+        <p class="font-charm text-2xl md:text-3xl text-[#D4AF37] font-bold -translate-x-2">18:00 hrs</p>
+      </div>
     </div>
   </div>
 </section>
@@ -105,6 +110,7 @@
       gsap.set("#texto-invitacion", { opacity: 0, scale: 0.9 });
       gsap.set("#fecha-evento", { opacity: 0, scale: 0.9 });
       gsap.set("#anio-evento", { opacity: 0, scale: 0.9 });
+      gsap.set("#hora-evento", { opacity: 0, scale: 0.9 });
 
       // ✨ ANIMACIÓN SIMULTÁNEA - TODO AL MISMO TIEMPO
       ScrollTrigger.create({
@@ -115,7 +121,7 @@
           const tl = gsap.timeline();
 
           // TODO aparece al mismo tiempo
-          tl.to("#flores-fecha, #mariposa-invitacion-izq, #mariposa-invitacion-der, #texto-invitacion, #fecha-evento, #anio-evento", {
+          tl.to("#flores-fecha, #mariposa-invitacion-izq, #mariposa-invitacion-der, #texto-invitacion, #fecha-evento, #anio-evento, #hora-evento", {
             opacity: 1,
             duration: 1,
             ease: "power2.out",
@@ -136,7 +142,7 @@
             duration: 1,
             ease: "power2.out",
           }, "<")
-          .to("#texto-invitacion, #fecha-evento, #anio-evento", {
+          .to("#texto-invitacion, #fecha-evento, #anio-evento, #hora-evento", {
             scale: 1,
             duration: 1,
             ease: "back.out(1.2)",
@@ -165,7 +171,7 @@
           // Resetear todo al salir por arriba - SIMULTÁNEO
           const tl = gsap.timeline();
           
-          tl.to("#flores-fecha, #mariposa-invitacion-izq, #mariposa-invitacion-der, #texto-invitacion, #fecha-evento, #anio-evento", {
+          tl.to("#flores-fecha, #mariposa-invitacion-izq, #mariposa-invitacion-der, #texto-invitacion, #fecha-evento, #anio-evento, #hora-evento", {
             opacity: 0,
             duration: 0.5,
             ease: "power2.in",
@@ -185,7 +191,7 @@
             duration: 0.5,
             ease: "power2.in",
           }, "<")
-          .to("#texto-invitacion, #fecha-evento, #anio-evento", {
+          .to("#texto-invitacion, #fecha-evento, #anio-evento, #hora-evento", {
             scale: 0.9,
             duration: 0.5,
             ease: "power2.in",

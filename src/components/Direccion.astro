@@ -65,6 +65,11 @@
       </p>
     </div>
 
+    <!-- HORA -->
+    <div class="mb-3" id="hora-direccion">
+      <p class="font-charm text-2xl md:text-3xl text-[#046D51] font-bold">18:00 hrs</p>
+    </div>
+
     <!-- BOTÓN VER UBICACIÓN -->
     <div class="flex justify-center" id="boton-ubicacion">
       <a href="https://maps.app.goo.gl/griwsPwwxxf3ipRFA" target="_blank" rel="noopener noreferrer">
@@ -91,6 +96,7 @@
       gsap.set("#icono-direccion", { opacity: 0, scale: 0.8 });
       gsap.set("#titulo-direccion", { opacity: 0, scale: 0.9 });
       gsap.set("#info-direccion", { opacity: 0, scale: 0.9 });
+      gsap.set("#hora-direccion", { opacity: 0, scale: 0.9 });
       gsap.set("#boton-ubicacion", { opacity: 0, scale: 0.9 });
       gsap.set("#mariposa-dir-izq", { opacity: 0, x: -30 });
       gsap.set("#mariposa-dir-der", { opacity: 0, x: 30 });
@@ -107,7 +113,7 @@
           tl.to("#flor-arriba-dir", {
             opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)",
           })
-          .to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion", {
+          .to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #hora-direccion, #boton-ubicacion", {
             opacity: 1,
             duration: 1,
             ease: "power2.out",
@@ -128,7 +134,7 @@
             duration: 1,
             ease: "power2.out",
           }, "<")
-          .to("#titulo-direccion, #info-direccion, #boton-ubicacion", {
+          .to("#titulo-direccion, #info-direccion, #hora-direccion, #boton-ubicacion", {
             scale: 1,
             duration: 1,
             ease: "back.out(1.2)",
@@ -161,7 +167,7 @@
           // Salida simultánea
           const tl = gsap.timeline();
           
-          tl.to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #boton-ubicacion", {
+          tl.to("#icono-direccion, #mariposa-dir-izq, #mariposa-dir-der, #titulo-direccion, #info-direccion, #hora-direccion, #boton-ubicacion", {
             opacity: 0,
             duration: 0.5,
             ease: "power2.in",
@@ -181,7 +187,7 @@
             duration: 0.5,
             ease: "power2.in",
           }, "<")
-          .to("#titulo-direccion, #info-direccion, #boton-ubicacion", {
+          .to("#titulo-direccion, #info-direccion, #hora-direccion, #boton-ubicacion", {
             scale: 0.9,
             duration: 0.5,
             ease: "power2.in",
